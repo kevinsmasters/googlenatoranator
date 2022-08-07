@@ -73,9 +73,8 @@ export const Results = () => {
         <div className="flex flex-wrap">
           {results?.map((video, index) => (
             <div className="p-2" key={index}>
-              <ReactPlayer url={video.additional_links?.[0].href} controls width="355px" height="200px" />
-              {/* <p>URL: {video.additional_links?.[0].href}</p> */}
-              {/* TODO: fix this - it breaks if the links url loads a channel instead of the video */}
+              {/* check if href includes 'watch' to eliminate channel results */}
+              {video?.additional_links?.[0]?.href.includes('watch') && <ReactPlayer url={video.additional_links?.[0].href} controls width="355px" height="200px" />}
             </div>
           ))}
         </div>
